@@ -155,7 +155,14 @@ elif selected_tab == "TOOCS Code":
         
 elif selected_tab == "ICD Code":
     # load icd data
-    icd_df = pd.read_parquet('./dataset/icd_embeddings.parquet')
+    #icd_df = pd.read_parquet('./dataset/icd_embeddings.parquet')
+    #icd_df['Embedding'] = icd_df['Embedding'].apply(lambda x: torch.from_numpy(x))
+    icd_df_1a = pd.read_parquet('./dataset/icd_embeddings_1a.parquet')
+    icd_df_1b = pd.read_parquet('./dataset/icd_embeddings_1b.parquet')
+    icd_df_2 = pd.read_parquet('./dataset/icd_embeddings_2.parquet')
+    icd_df_3a = pd.read_parquet('./dataset/icd_embeddings_3a.parquet')
+    icd_df_3b = pd.read_parquet('./dataset/icd_embeddings_3b.parquet')
+    icd_df = pd.concat([icd_df_1a, icd_df_1b, icd_df_2, icd_df_3a, icd_df_3b], ignore_index=True)
     icd_df['Embedding'] = icd_df['Embedding'].apply(lambda x: torch.from_numpy(x))
     
     # Use Markdown headers to increase text size
